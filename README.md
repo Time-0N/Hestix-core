@@ -1,13 +1,13 @@
-# Hestix-dom
+# Hestix-core
 
-**Hestix-dom** is a self-hosted, modular home management system built for privacy, control, and extensibility.  
+**Hestix-core** is a self-hosted, modular home management system built for privacy, control, and extensibility.  
 Run it on your own server or Raspberry Pi, and take charge of your digital environment with an elegant web interface and powerful backend.
 
 ---
 
 ## 🔍 Overview
 
-Hestix-dom is designed to be the **nucleus of your self-hosted home infrastructure**.  
+Hestix-core is designed to be the **nucleus of your self-hosted home infrastructure**.  
 It acts as a customizable web-based control panel that integrates:
 
 - 📁 Personal cloud storage  
@@ -16,7 +16,7 @@ It acts as a customizable web-based control panel that integrates:
 - 🔐 Role-based user authentication (Keycloak compatible)  
 - 🧩 Extendable architecture for new features/modules  
 
-> Hestix-dom is privacy-first and infrastructure-light — perfect for Raspberry Pi or other local server setups.
+> Hestix-core is privacy-first and infrastructure-light — perfect for Raspberry Pi or other local server setups.
 
 ---
 
