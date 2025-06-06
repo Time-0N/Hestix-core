@@ -39,7 +39,6 @@ It acts as a customizable web-based control panel that integrates:
 - **Backend**: Spring Boot (Java)  
 - **Auth**: Keycloak (OAuth2 / OIDC)  
 - **Database**: MongoDB (media/files), PostgreSQL (user/auth via Keycloak)  
-- **Platform**: Raspberry Pi 5 + NAS (remote DB & storage)  
 
 ---
 
