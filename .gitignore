@@ -1,0 +1,70 @@
+# === GLOBAL ===
+*.log
+*.tmp
+*.temp
+*.swp
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+build/
+
+# === ANGULAR FRONTEND ===
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/cache/
+/frontend/.angular/
+
+# Optional: IDE-specific Angular stuff
+/frontend/.vscode/
+/frontend/.idea/
+/frontend/.env
+/frontend/.env.local
+
+# === SPRING BOOT BACKEND ===
+/backend/build/
+/backend/out/
+/backend/.gradle/
+/backend/.idea/
+/backend/.classpath
+/backend/.project
+/backend/.settings/
+/backend/.env
+/backend/.env.local
+
+# Gradle
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin DSL specific
+*.kts~
+
+# === IDE SUPPORT ===
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# === OS / MISC ===
+*.bak
+*.orig
+*.rej
+*.sublime-workspace
+*.sublime-project
+*.esproj
+
+# === ENV FILES ===
+.env
+.env.*
