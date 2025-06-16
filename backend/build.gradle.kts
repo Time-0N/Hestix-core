@@ -1,5 +1,4 @@
 import com.google.cloud.tools.jib.gradle.JibExtension
-import org.gradle.internal.impldep.com.google.api.client.util.Data.mapOf
 import java.util.Properties
 
 plugins {
@@ -21,11 +20,11 @@ val openApiSpec = "$rootDir/openapi/hestix.yaml"
 openApiGenerate {
     inputSpec.set(openApiSpec)
     generatorName.set("spring")
-    outputDir.set("$projectDir/generated")
+    outputDir.set("$projectDir/src/main/java")
 
-    apiPackage.set("ch.hestix.rest.generated")
-    modelPackage.set("ch.hestix.rest.generated.model")
-    invokerPackage.set("ch.hestix.rest.generated")
+    apiPackage.set("ch.hestix.hestixcore.rest.generated")
+    modelPackage.set("ch.hestix.hestixcore.rest.generated.model")
+    invokerPackage.set("ch.hestix.hestixcore.rest.generated")
 
     globalProperties.set(
         mapOf(
@@ -58,6 +57,11 @@ sourceSets {
 // Ensure OpenAPI generates before compilation
 tasks.compileJava {
     dependsOn(tasks.openApiGenerate)
+}
+
+// Clean generated code
+tasks.clean {
+    delete("$buildDir/generated")
 }
 
 java {
@@ -123,17 +127,9 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-jib {
-    to {
-        image = "hestix-core:latest"
-    }
-}
-
 // === Profile Handling ===
-val profile: String by lazy {
+val profile: String by project.extra {
     val envFile = rootProject.file(".env")
-    if (!envFile.exists()) throw GradleException(".env file missing")
-
     val props = Properties().apply { load(envFile.inputStream()) }
     props.getProperty("BUILD_PROFILE") ?: "dev"
 }
@@ -148,7 +144,7 @@ tasks.withType<ProcessResources> {
     }
 }
 
-configure<JibExtension> {
+jib {
     to {
         image = "hestix-core:latest"
     }
