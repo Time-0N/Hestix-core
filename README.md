@@ -46,14 +46,14 @@ It acts as a customizable web-based control panel that integrates:
 
 - Raspberry Pi 5 (4GB RAM or higher recommended)  
 - Docker or Java environment (for backend)  
-- NAS with MongoDB & PostgreSQL (or remote DB setup)  
+- NAS with PostgreSQL (or remote DB setup)  
 - NGINX or Caddy (optional, for reverse proxy)  
 
 ---
 
 ## 📚 Documentation
 
-Coming soon in the `/docs` directory.  
+Check the `/documentation` directory.  
 Setup, configuration, and module development guides will be added incrementally.
 
 ---

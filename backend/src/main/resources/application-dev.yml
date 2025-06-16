@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:9090}
+
+spring:
+  application:
+    name: backend
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      resource server:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+keycloak:
+  auth-server-url: ${KEYCLOAK_URL}
+  realm: dev
+  client-id: dev
+  client-secret: ${CLIENT_SECRET}
+  token-uri: ${keycloak.auth-server-url}/realms/${keycloak.realm}/protocol/openid-connect/token
+
+springdoc:
+  swagger-ui:
+    path: swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  cache:
+    disabled: true

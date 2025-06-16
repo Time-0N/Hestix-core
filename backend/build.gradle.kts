@@ -1,3 +1,7 @@
+import com.google.cloud.tools.jib.gradle.JibExtension
+import org.gradle.internal.impldep.com.google.api.client.util.Data.mapOf
+import java.util.Properties
+
 plugins {
     java
     id("org.springframework.boot") version "3.3.0"
@@ -12,16 +16,16 @@ version = "0.0.1-SNAPSHOT"
 
 
 // === OpenAPI config ===
-val openApiSpec = "$rootDir/docs/openapi/openapi.yaml"
+val openApiSpec = "$rootDir/openapi/hestix.yaml"
 
 openApiGenerate {
     inputSpec.set(openApiSpec)
     generatorName.set("spring")
-    outputDir.set("$projectDir/src/main/java")
+    outputDir.set("$projectDir/generated")
 
-    apiPackage.set("ch.mdma.rest.generated")
-    modelPackage.set("ch.mdma.rest.generated.model")
-    invokerPackage.set("ch.mdma.rest.generated")
+    apiPackage.set("ch.hestix.rest.generated")
+    modelPackage.set("ch.hestix.rest.generated.model")
+    invokerPackage.set("ch.hestix.rest.generated")
 
     globalProperties.set(
         mapOf(
@@ -42,7 +46,19 @@ openApiGenerate {
     )
 }
 
+// Add generated sources to compilation
+sourceSets {
+    main {
+        java {
+            srcDir("$buildDir/generated/src/main/java")
+        }
+    }
+}
 
+// Ensure OpenAPI generates before compilation
+tasks.compileJava {
+    dependsOn(tasks.openApiGenerate)
+}
 
 java {
     toolchain {
@@ -110,5 +126,33 @@ tasks.withType<Test> {
 jib {
     to {
         image = "hestix-core:latest"
+    }
+}
+
+// === Profile Handling ===
+val profile: String by lazy {
+    val envFile = rootProject.file(".env")
+    if (!envFile.exists()) throw GradleException(".env file missing")
+
+    val props = Properties().apply { load(envFile.inputStream()) }
+    props.getProperty("BUILD_PROFILE") ?: "dev"
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    systemProperty("spring.profiles.active", profile)
+}
+
+tasks.withType<ProcessResources> {
+    filesMatching("**/application*.properties") {
+        expand("spring.profiles.active" to profile)
+    }
+}
+
+configure<JibExtension> {
+    to {
+        image = "hestix-core:latest"
+    }
+    container {
+        jvmFlags = listOf("-Dspring.profiles.active=$profile")
     }
 }
