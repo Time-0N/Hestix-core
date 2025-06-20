@@ -1,0 +1,16 @@
+type: object
+description: User object
+required:
+  - username
+  - email
+properties:
+  username:
+    type: string
+  email:
+    type: string
+  firstName:
+    type: string
+  lastName:
+    type: string
+  aboutMe:
+    type: string

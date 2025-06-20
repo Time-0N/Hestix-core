@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: Hestix API
+  description: Admin user endpoints for the Hestix API
+  version: 1.0.0
+paths:
+  /user/admin/get/all:
+    get:
+      tags:
+        - Admin
+      operationId: getAllUsers
+      summary: Get all users
+      responses:
+        '200':
+          description: All users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdUserMap'
+
+  /user/admin/delete/user/{userId}:
+    delete:
+      tags:
+        - Admin
+      operationId: adminDeleteUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the user to delete
+      responses:
+        '204':
+          description: User deleted successfully, no content returned
+        '404':
+          description: User not found
+        '403':
+          description: Forbidden - Admin access required
+
+  /user/admin/update/user/{userId}:
+    put:
+      tags:
+        - Admin
+      operationId: adminUpdateUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for editing the user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserUpdateResponse'
+
+components:
+  schemas:
+    IdUserMap:
+      type: object
+      additionalProperties:
+        $ref: '../../common/user.yaml'
+
+    UserUpdateRequest:
+      $ref: '../common/user-update-request.yaml'
+
+    UserUpdateResponse:
+      $ref: '../common/user-update-response.yaml'

@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Hestix API
+  description: User endpoints for the Hestix API
+  version: 1.0.0
+paths:
+  /user/info:
+    get:
+      tags:
+        - User
+      operationId: getCurrentUser
+      summary: Get current user
+      responses:
+        '200':
+          description: User info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /user/update/user:
+    put:
+      tags:
+        - User
+      operationId: updateUser
+      summary: Update user data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserUpdateResponse'
+
+  /user/delete/user:
+    delete:
+      tags:
+        - User
+      operationId: deleteUser
+      summary: Delete user
+      responses:
+        '204':
+          description: Deleted
+
+components:
+  schemas:
+    User:
+      $ref: '../common/user.yaml'
+
+    UserUpdateRequest:
+      $ref: './common/user-update-request.yaml'
+
+    UserUpdateResponse:
+      $ref: './common/user-update-response.yaml'

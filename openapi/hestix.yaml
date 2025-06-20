@@ -2,14 +2,28 @@ openapi: 3.0.0
 info:
   title: Hestix API
   version: 1.0.0
+servers:
+  - url: http://localhost:9090/api
 paths:
   /auth/register:
-    $ref: './common/security.yaml#/paths/~1auth~1register'
+    $ref: './authentication/authentication.yaml#/paths/~1auth~1register'
   /auth/token:
-    $ref: './common/security.yaml#/paths/~1auth~1token'
+    $ref: './authentication/authentication.yaml#/paths/~1auth~1token'
+  /user/me:
+    $ref: './userhome/userhome.yaml#/paths/~1user~1info'
+  /user/update/user:
+    $ref: './userhome/userhome.yaml#/paths/~1user~1update~1user'
+  /user/delete/user:
+    $ref: './userhome/userhome.yaml#/paths/~1user~1delete~1user'
+  /user/admin/get/all:
+    $ref: './userhome/admin/user-admin.yaml#/paths/~1user~1admin~1get~1all'
+  /user/admin/delete/user/{userId}:
+    $ref: './userhome/admin/user-admin.yaml#/paths/~1user~1admin~1delete~1user~1{userId}'
+  /user/admin/update/user/{userId}:
+    $ref: './userhome/admin/user-admin.yaml#/paths/~1user~1admin~1update~1user~1{userId}'
 
 components:
   schemas:
   # Fields
-
-  # Enums
+    User:
+      $ref: './common/user.yaml'
