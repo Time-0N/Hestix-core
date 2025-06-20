@@ -7,7 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4"
     id("java")
     id("com.google.cloud.tools.jib") version "3.4.0"
-    id("org.openapi.generator") version "7.7.0"
+    id("org.openapi.generator") version "6.6.0"
 }
 
 group = "ch.hestix"
