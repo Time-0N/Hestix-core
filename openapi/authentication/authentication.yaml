@@ -57,6 +57,12 @@ components:
 
     TokenResponse:
       type: object
+      required:
+        - accessToken
+        - refreshToken
+        - expiresIn
+        - refreshExpiresIn
+        - tokenType
       properties:
         accessToken:
           type: string
@@ -88,6 +94,10 @@ components:
 
     UserRegistrationResponse:
       type: object
+      required:
+        - username
+        - email
+        - token
       properties:
         username:
           type: string

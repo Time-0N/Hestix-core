@@ -19,7 +19,7 @@ import jakarta.annotation.Generated;
  * UserRegistrationResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T14:25:44.247369+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T16:18:16.117949+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
 public class UserRegistrationResponse {
 
   private String username;
@@ -27,6 +27,19 @@ public class UserRegistrationResponse {
   private String email;
 
   private TokenResponse token;
+
+  public UserRegistrationResponse() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public UserRegistrationResponse(String username, String email, TokenResponse token) {
+    this.username = username;
+    this.email = email;
+    this.token = token;
+  }
 
   public UserRegistrationResponse username(String username) {
     this.username = username;
@@ -37,8 +50,8 @@ public class UserRegistrationResponse {
    * Get username
    * @return username
    */
-  
-  @Schema(name = "username", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "username", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("username")
   public String getUsername() {
     return username;
@@ -57,8 +70,8 @@ public class UserRegistrationResponse {
    * Get email
    * @return email
    */
-  
-  @Schema(name = "email", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "email", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("email")
   public String getEmail() {
     return email;
@@ -77,8 +90,8 @@ public class UserRegistrationResponse {
    * Get token
    * @return token
    */
-  @Valid 
-  @Schema(name = "token", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "token", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("token")
   public TokenResponse getToken() {
     return token;

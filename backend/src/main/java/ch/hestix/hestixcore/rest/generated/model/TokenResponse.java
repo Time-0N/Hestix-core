@@ -18,7 +18,7 @@ import jakarta.annotation.Generated;
  * TokenResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T14:25:44.247369+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T16:18:16.117949+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
 public class TokenResponse {
 
   private String accessToken;
@@ -31,6 +31,21 @@ public class TokenResponse {
 
   private String tokenType;
 
+  public TokenResponse() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public TokenResponse(String accessToken, String refreshToken, Long expiresIn, Long refreshExpiresIn, String tokenType) {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
+    this.expiresIn = expiresIn;
+    this.refreshExpiresIn = refreshExpiresIn;
+    this.tokenType = tokenType;
+  }
+
   public TokenResponse accessToken(String accessToken) {
     this.accessToken = accessToken;
     return this;
@@ -40,8 +55,8 @@ public class TokenResponse {
    * Get accessToken
    * @return accessToken
    */
-  
-  @Schema(name = "accessToken", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "accessToken", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("accessToken")
   public String getAccessToken() {
     return accessToken;
@@ -60,8 +75,8 @@ public class TokenResponse {
    * Get refreshToken
    * @return refreshToken
    */
-  
-  @Schema(name = "refreshToken", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "refreshToken", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("refreshToken")
   public String getRefreshToken() {
     return refreshToken;
@@ -80,8 +95,8 @@ public class TokenResponse {
    * Get expiresIn
    * @return expiresIn
    */
-  
-  @Schema(name = "expiresIn", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "expiresIn", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("expiresIn")
   public Long getExpiresIn() {
     return expiresIn;
@@ -100,8 +115,8 @@ public class TokenResponse {
    * Get refreshExpiresIn
    * @return refreshExpiresIn
    */
-  
-  @Schema(name = "refreshExpiresIn", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "refreshExpiresIn", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("refreshExpiresIn")
   public Long getRefreshExpiresIn() {
     return refreshExpiresIn;
@@ -120,8 +135,8 @@ public class TokenResponse {
    * Get tokenType
    * @return tokenType
    */
-  
-  @Schema(name = "tokenType", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "tokenType", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tokenType")
   public String getTokenType() {
     return tokenType;

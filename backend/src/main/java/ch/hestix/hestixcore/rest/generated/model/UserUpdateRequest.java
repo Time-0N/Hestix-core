@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "user-update-request", description = "Dto for a user update request")
 @JsonTypeName("user-update-request")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T14:25:44.247369+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T16:18:16.117949+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
 public class UserUpdateRequest {
 
   private String username;
@@ -32,8 +32,6 @@ public class UserUpdateRequest {
 
   private String lastName;
 
-  private String aboutMe;
-
   public UserUpdateRequest() {
     super();
   }
@@ -41,9 +39,11 @@ public class UserUpdateRequest {
   /**
    * Constructor with only required parameters
    */
-  public UserUpdateRequest(String username, String email) {
+  public UserUpdateRequest(String username, String email, String firstName, String lastName) {
     this.username = username;
     this.email = email;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public UserUpdateRequest username(String username) {
@@ -95,8 +95,8 @@ public class UserUpdateRequest {
    * Get firstName
    * @return firstName
    */
-  
-  @Schema(name = "firstName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "firstName", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("firstName")
   public String getFirstName() {
     return firstName;
@@ -115,8 +115,8 @@ public class UserUpdateRequest {
    * Get lastName
    * @return lastName
    */
-  
-  @Schema(name = "lastName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "lastName", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("lastName")
   public String getLastName() {
     return lastName;
@@ -124,26 +124,6 @@ public class UserUpdateRequest {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public UserUpdateRequest aboutMe(String aboutMe) {
-    this.aboutMe = aboutMe;
-    return this;
-  }
-
-  /**
-   * Get aboutMe
-   * @return aboutMe
-   */
-  
-  @Schema(name = "aboutMe", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("aboutMe")
-  public String getAboutMe() {
-    return aboutMe;
-  }
-
-  public void setAboutMe(String aboutMe) {
-    this.aboutMe = aboutMe;
   }
 
   @Override
@@ -158,13 +138,12 @@ public class UserUpdateRequest {
     return Objects.equals(this.username, userUpdateRequest.username) &&
         Objects.equals(this.email, userUpdateRequest.email) &&
         Objects.equals(this.firstName, userUpdateRequest.firstName) &&
-        Objects.equals(this.lastName, userUpdateRequest.lastName) &&
-        Objects.equals(this.aboutMe, userUpdateRequest.aboutMe);
+        Objects.equals(this.lastName, userUpdateRequest.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, email, firstName, lastName, aboutMe);
+    return Objects.hash(username, email, firstName, lastName);
   }
 
   @Override
@@ -175,7 +154,6 @@ public class UserUpdateRequest {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
-    sb.append("    aboutMe: ").append(toIndentedString(aboutMe)).append("\n");
     sb.append("}");
     return sb.toString();
   }

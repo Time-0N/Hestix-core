@@ -3,6 +3,8 @@ description: User object
 required:
   - username
   - email
+  - firstName
+  - lastName
 properties:
   username:
     type: string
@@ -11,6 +13,4 @@ properties:
   firstName:
     type: string
   lastName:
-    type: string
-  aboutMe:
     type: string

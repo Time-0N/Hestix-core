@@ -19,7 +19,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "User", description = "User object")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T14:25:44.247369+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T16:18:16.117949+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
 public class User {
 
   private String username;
@@ -30,8 +30,6 @@ public class User {
 
   private String lastName;
 
-  private String aboutMe;
-
   public User() {
     super();
   }
@@ -39,9 +37,11 @@ public class User {
   /**
    * Constructor with only required parameters
    */
-  public User(String username, String email) {
+  public User(String username, String email, String firstName, String lastName) {
     this.username = username;
     this.email = email;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public User username(String username) {
@@ -93,8 +93,8 @@ public class User {
    * Get firstName
    * @return firstName
    */
-  
-  @Schema(name = "firstName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "firstName", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("firstName")
   public String getFirstName() {
     return firstName;
@@ -113,8 +113,8 @@ public class User {
    * Get lastName
    * @return lastName
    */
-  
-  @Schema(name = "lastName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "lastName", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("lastName")
   public String getLastName() {
     return lastName;
@@ -122,26 +122,6 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public User aboutMe(String aboutMe) {
-    this.aboutMe = aboutMe;
-    return this;
-  }
-
-  /**
-   * Get aboutMe
-   * @return aboutMe
-   */
-  
-  @Schema(name = "aboutMe", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("aboutMe")
-  public String getAboutMe() {
-    return aboutMe;
-  }
-
-  public void setAboutMe(String aboutMe) {
-    this.aboutMe = aboutMe;
   }
 
   @Override
@@ -156,13 +136,12 @@ public class User {
     return Objects.equals(this.username, user.username) &&
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.firstName, user.firstName) &&
-        Objects.equals(this.lastName, user.lastName) &&
-        Objects.equals(this.aboutMe, user.aboutMe);
+        Objects.equals(this.lastName, user.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, email, firstName, lastName, aboutMe);
+    return Objects.hash(username, email, firstName, lastName);
   }
 
   @Override
@@ -173,7 +152,6 @@ public class User {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
-    sb.append("    aboutMe: ").append(toIndentedString(aboutMe)).append("\n");
     sb.append("}");
     return sb.toString();
   }
