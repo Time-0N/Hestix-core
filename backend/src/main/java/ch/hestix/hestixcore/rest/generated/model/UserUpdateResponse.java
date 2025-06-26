@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import jakarta.validation.Valid;
@@ -15,36 +16,37 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * UserRegistrationRequest
+ * Dto for a user update
  */
 
+@Schema(name = "user-update-response", description = "Dto for a user update")
+@JsonTypeName("user-update-response")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-06-26T14:25:44.247369+02:00[Europe/Zurich]", comments = "Generator version: 7.7.0")
-public class UserRegistrationRequest {
+public class UserUpdateResponse {
 
   private String username;
 
   private String email;
 
-  private String password;
-
   private String firstName;
 
   private String lastName;
 
-  public UserRegistrationRequest() {
+  private String aboutMe;
+
+  public UserUpdateResponse() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public UserRegistrationRequest(String username, String email, String password) {
+  public UserUpdateResponse(String username, String email) {
     this.username = username;
     this.email = email;
-    this.password = password;
   }
 
-  public UserRegistrationRequest username(String username) {
+  public UserUpdateResponse username(String username) {
     this.username = username;
     return this;
   }
@@ -64,7 +66,7 @@ public class UserRegistrationRequest {
     this.username = username;
   }
 
-  public UserRegistrationRequest email(String email) {
+  public UserUpdateResponse email(String email) {
     this.email = email;
     return this;
   }
@@ -84,27 +86,7 @@ public class UserRegistrationRequest {
     this.email = email;
   }
 
-  public UserRegistrationRequest password(String password) {
-    this.password = password;
-    return this;
-  }
-
-  /**
-   * Get password
-   * @return password
-   */
-  @NotNull 
-  @Schema(name = "password", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("password")
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public UserRegistrationRequest firstName(String firstName) {
+  public UserUpdateResponse firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -124,7 +106,7 @@ public class UserRegistrationRequest {
     this.firstName = firstName;
   }
 
-  public UserRegistrationRequest lastName(String lastName) {
+  public UserUpdateResponse lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -144,6 +126,26 @@ public class UserRegistrationRequest {
     this.lastName = lastName;
   }
 
+  public UserUpdateResponse aboutMe(String aboutMe) {
+    this.aboutMe = aboutMe;
+    return this;
+  }
+
+  /**
+   * Get aboutMe
+   * @return aboutMe
+   */
+  
+  @Schema(name = "aboutMe", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("aboutMe")
+  public String getAboutMe() {
+    return aboutMe;
+  }
+
+  public void setAboutMe(String aboutMe) {
+    this.aboutMe = aboutMe;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -152,28 +154,28 @@ public class UserRegistrationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserRegistrationRequest userRegistrationRequest = (UserRegistrationRequest) o;
-    return Objects.equals(this.username, userRegistrationRequest.username) &&
-        Objects.equals(this.email, userRegistrationRequest.email) &&
-        Objects.equals(this.password, userRegistrationRequest.password) &&
-        Objects.equals(this.firstName, userRegistrationRequest.firstName) &&
-        Objects.equals(this.lastName, userRegistrationRequest.lastName);
+    UserUpdateResponse userUpdateResponse = (UserUpdateResponse) o;
+    return Objects.equals(this.username, userUpdateResponse.username) &&
+        Objects.equals(this.email, userUpdateResponse.email) &&
+        Objects.equals(this.firstName, userUpdateResponse.firstName) &&
+        Objects.equals(this.lastName, userUpdateResponse.lastName) &&
+        Objects.equals(this.aboutMe, userUpdateResponse.aboutMe);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, email, password, firstName, lastName);
+    return Objects.hash(username, email, firstName, lastName, aboutMe);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserRegistrationRequest {\n");
+    sb.append("class UserUpdateResponse {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    sb.append("    aboutMe: ").append(toIndentedString(aboutMe)).append("\n");
     sb.append("}");
     return sb.toString();
   }

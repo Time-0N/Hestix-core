@@ -1,0 +1,9 @@
+ch/hestix/hestixcore/rest/generated/AuthApi.java
+ch/hestix/hestixcore/rest/generated/UserApi.java
+ch/hestix/hestixcore/rest/generated/model/AuthenticationRequest.java
+ch/hestix/hestixcore/rest/generated/model/TokenResponse.java
+ch/hestix/hestixcore/rest/generated/model/User.java
+ch/hestix/hestixcore/rest/generated/model/UserRegistrationRequest.java
+ch/hestix/hestixcore/rest/generated/model/UserRegistrationResponse.java
+ch/hestix/hestixcore/rest/generated/model/UserUpdateRequest.java
+ch/hestix/hestixcore/rest/generated/model/UserUpdateResponse.java

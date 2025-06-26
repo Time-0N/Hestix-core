@@ -1,16 +1,12 @@
-import com.google.cloud.tools.jib.gradle.JibExtension
-import java.util.Properties
-
 plugins {
-    java
     id("org.springframework.boot") version "3.3.0"
     id("io.spring.dependency-management") version "1.1.4"
     id("java")
     id("com.google.cloud.tools.jib") version "3.4.0"
-    id("org.openapi.generator") version "6.6.0"
+    id("org.openapi.generator") version "7.7.0"
 }
 
-group = "ch.hestix"
+group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
 
@@ -45,24 +41,7 @@ openApiGenerate {
     )
 }
 
-// Add generated sources to compilation
-sourceSets {
-    main {
-        java {
-            srcDir("$buildDir/generated/src/main/java")
-        }
-    }
-}
 
-// Ensure OpenAPI generates before compilation
-tasks.compileJava {
-    dependsOn(tasks.openApiGenerate)
-}
-
-// Clean generated code
-tasks.clean {
-    delete("$buildDir/generated")
-}
 
 java {
     toolchain {
@@ -127,28 +106,8 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-// === Profile Handling ===
-val profile: String by project.extra {
-    val envFile = rootProject.file(".env")
-    val props = Properties().apply { load(envFile.inputStream()) }
-    props.getProperty("BUILD_PROFILE") ?: "dev"
-}
-
-tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
-    systemProperty("spring.profiles.active", profile)
-}
-
-tasks.withType<ProcessResources> {
-    filesMatching("**/application*.properties") {
-        expand("spring.profiles.active" to profile)
-    }
-}
-
 jib {
     to {
-        image = "hestix-core:latest"
-    }
-    container {
-        jvmFlags = listOf("-Dspring.profiles.active=$profile")
+        image = "montagsmaler-backend:latest"
     }
 }

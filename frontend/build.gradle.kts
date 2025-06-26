@@ -6,9 +6,9 @@ plugins {
 }
 
 val generateFrontendApi by tasks.registering(org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class) {
-  inputSpec.set("$rootDir/docs/openapi/openapi.yaml")
+  inputSpec.set("$rootDir/openapi/hestix.yaml")
   generatorName.set("typescript-angular")
-  outputDir.set("$rootDir/frontend/src/app/generated")
+  outputDir.set("$rootDir/frontend/src/app/core/generated")
 
   configOptions.set(
     mapOf(
